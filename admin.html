@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>STENA — Админ-панель</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <header class="admin-header">
+
+    <a
+      class="brand"
+      href="index.html"
+    >
+      STE<span>NA</span>
+    </a>
+
+    <div class="admin-header-right">
+
+      <span class="admin-status">
+        Панель управления
+      </span>
+
+      <a
+        class="button line"
+        href="index.html"
+      >
+        К сайту →
+      </a>
+
+      <button
+        class="button line"
+        id="logoutButton"
+        type="button"
+      >
+        Выйти
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <main class="admin">
+
+    <div class="admin-heading">
+
+      <div>
+        <p class="eyebrow">
+          STENA / управление
+        </p>
+
+        <h1>
+          Админ-<em>панель</em>
+        </h1>
+
+        <p class="admin-note">
+          Управление каталогом и настройками магазина.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- НАВИГАЦИЯ -->
+
+    <nav class="admin-nav">
+
+      <button
+        class="admin-nav-item active"
+        data-section="catalog"
+      >
+        Каталог
+      </button>
+
+      <button
+        class="admin-nav-item"
+        data-section="orders"
+      >
+        Заказы
+      </button>
+
+      <button
+        class="admin-nav-item"
+        data-section="settings"
+      >
+        Настройки
+      </button>
+
+    </nav>
+
+
+    <!-- =====================
+         КАТАЛОГ
+    ====================== -->
+
+    <section
+      class="admin-section active"
+      id="section-catalog"
+    >
+
+      <div class="section-title">
+
+        <div>
+          <p class="eyebrow">
+            Магазин
+          </p>
+
+          <h2>
+            Каталог товаров
+          </h2>
+        </div>
+
+        <button
+          class="button dark"
+          id="addProduct"
+          type="button"
+        >
+          + Добавить товар
+        </button>
+
+      </div>
+
+
+      <div
+        id="productEditor"
+        class="product-editor"
+      >
+      </div>
+
+
+      <div class="catalog-actions">
+
+        <button
+          class="button dark"
+          id="saveProducts"
+          type="button"
+        >
+          Сохранить каталог →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         ЗАКАЗЫ
+    ====================== -->
+
+    <section
+      class="admin-section"
+      id="section-orders"
+    >
+
+      <div class="section-title">
+
+        <div>
+          <p class="eyebrow">
+            Магазин
+          </p>
+
+          <h2>
+            Заказы
+          </h2>
+        </div>
+
+      </div>
+
+      <div class="empty-section">
+
+        <div class="empty-icon">
+          —
+        </div>
+
+        <h3>
+          Заказов пока нет
+        </h3>
+
+        <p>
+          Здесь будут отображаться заказы клиентов.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================
+         НАСТРОЙКИ
+    ====================== -->
+
+    <section
+      class="admin-section"
+      id="section-settings"
+    >
+
+      <div class="section-title">
+
+        <div>
+          <p class="eyebrow">
+            STENA
+          </p>
+
+          <h2>
+            Настройки магазина
+          </h2>
+        </div>
+
+      </div>
+
+
+      <form
+        class="settings-form"
+        id="settingsForm"
+      >
+
+        <div class="settings-card">
+
+          <h3>
+            Основная информация
+          </h3>
+
+          <label>
+
+            <span>
+              Город
+            </span>
+
+            <input
+              type="text"
+              name="city"
+              required
+            >
+
+          </label>
+
+
+          <label>
+
+            <span>
+              Текст доставки
+            </span>
+
+            <input
+              type="text"
+              name="announcement"
+              required
+            >
+
+          </label>
+
+
+          <button
+            class="button dark"
+            type="submit"
+          >
+            Сохранить настройки →
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <!-- СБРОС -->
+
+    <button
+      class="reset"
+      id="reset"
+      type="button"
+    >
+      Сбросить данные магазина
+    </button>
+
+  </main>
+
+
+  <script src="supabase-config.js"></script>
+  <script src="admin-auth.js"></script>
+  <script src="admin.js"></script>
+
+</body>
+
+</html>

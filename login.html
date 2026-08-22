@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>STENA — Вход</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body class="login-page">
+
+  <main class="login-container">
+
+    <div class="login-card">
+
+      <a
+        class="brand login-brand"
+        href="index.html"
+      >
+        STE<span>NA</span>
+      </a>
+
+      <p class="eyebrow">
+        STENA / управление
+      </p>
+
+      <h1>
+        Вход в<br>
+        <em>админ-панель</em>
+      </h1>
+
+      <p class="login-description">
+        Введите данные администратора,
+        чтобы продолжить.
+      </p>
+
+
+      <form id="loginForm">
+
+        <label>
+          Email
+
+          <input
+            id="loginEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="admin@example.com"
+            required
+          >
+        </label>
+
+
+        <label>
+          Пароль
+
+          <input
+            id="loginPassword"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Введите пароль"
+            required
+          >
+        </label>
+
+
+        <button
+          class="button dark login-button"
+          type="submit"
+        >
+          Войти →
+        </button>
+
+        <p
+          id="loginError"
+          class="login-error"
+          hidden
+        ></p>
+
+      </form>
+
+
+      <a
+        class="back-to-site"
+        href="index.html"
+      >
+        ← Вернуться на сайт
+      </a>
+
+    </div>
+
+  </main>
+
+
+  <script src="supabase-config.js"></script>
+  <script src="auth.js"></script>
+
+</body>
+</html>

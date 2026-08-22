@@ -1,0 +1,392 @@
+/* =========================
+   ADMIN
+========================= */
+
+.admin {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 24px 70px;
+}
+
+.admin h1 {
+  margin: 0 0 10px;
+}
+
+.admin-note {
+  margin: 0 0 30px;
+  opacity: .6;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-card {
+  padding: 22px;
+  background: #f5f3ee;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.admin-card h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.admin-card label:not(.photo-box) {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.admin-card label:not(.photo-box) input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 6px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border: 1px solid #d5d1ca;
+  border-radius: 6px;
+  background: #fff;
+  font: inherit;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+/* =========================
+   ТОВАР
+========================= */
+
+#productEditor {
+  width: 100%;
+}
+
+#productEditor .product-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+
+  gap: 20px;
+
+  width: 100%;
+  min-height: 200px;
+
+  padding: 14px;
+
+  margin-bottom: 12px;
+
+  box-sizing: border-box;
+
+  background: #fff;
+
+  border: 1px solid #ddd8d0;
+  border-radius: 12px;
+}
+
+/* =========================
+   НАЗВАНИЕ / ЦЕНА / КАТЕГОРИЯ
+========================= */
+
+#productEditor .product-fields {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 130px;
+
+  grid-template-rows: 42px 42px;
+
+  gap: 10px;
+
+  align-content: start;
+}
+
+#productEditor .product-name {
+  grid-column: 1 / -1;
+}
+
+#productEditor .product-price {
+  grid-column: 1;
+}
+
+#productEditor .product-kind {
+  grid-column: 2;
+}
+
+#productEditor .product-fields input,
+#productEditor .product-fields select {
+  width: 100%;
+  min-width: 0;
+
+  height: 42px;
+
+  padding: 8px 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d5d1ca;
+  border-radius: 7px;
+
+  background: #fff;
+
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+}
+
+#productEditor .product-fields input:focus,
+#productEditor .product-fields select:focus {
+  border-color: #99948c;
+}
+
+/* =========================
+   ФОТО
+========================= */
+
+#productEditor .product-photo-area {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+/* Квадрат */
+
+#productEditor .photo-box {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 200px;
+  height: 200px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  border: 1px dashed #bdb8af;
+  border-radius: 10px;
+
+  background: #f5f3ee;
+
+  cursor: pointer;
+}
+
+/* Скрытый input */
+
+#productEditor .photo-upload {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+
+  cursor: pointer;
+
+  z-index: 3;
+}
+
+/* Превью */
+
+#productEditor .admin-product-photo {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  z-index: 1;
+}
+
+/* Добавить фото */
+
+#productEditor .photo-placeholder {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+
+  color: #777;
+
+  font-size: 28px;
+
+  pointer-events: none;
+}
+
+#productEditor .photo-placeholder small {
+  margin-top: 6px;
+
+  font-size: 11px;
+
+  color: #777;
+}
+
+/* При наведении */
+
+#productEditor .photo-box:hover {
+  border-color: #8d887f;
+  background: #efede8;
+}
+
+/* =========================
+   УДАЛИТЬ
+========================= */
+
+#productEditor .delete-product {
+  width: 200px;
+
+  height: 34px;
+
+  padding: 0 12px;
+
+  border: 0;
+
+  border-radius: 6px;
+
+  background: #e9e7e2;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  transition: background .15s ease;
+}
+
+#productEditor .delete-product:hover {
+  background: #dcd9d2;
+}
+
+/* =========================
+   СОХРАНИТЬ
+========================= */
+
+#saveProducts {
+  width: 100%;
+
+  margin-top: 12px;
+}
+
+/* =========================
+   СБРОС
+========================= */
+
+.reset {
+  display: block;
+
+  margin-top: 25px;
+
+  border: 0;
+
+  background: transparent;
+
+  text-decoration: underline;
+
+  cursor: pointer;
+
+  opacity: .6;
+
+  font-family: inherit;
+}
+
+/* =========================
+   ПЛАНШЕТ
+========================= */
+
+@media (max-width: 900px) {
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #productEditor .product-row {
+    grid-template-columns: minmax(0, 1fr) 210px;
+  }
+
+  #productEditor .photo-box {
+    width: 180px;
+    height: 180px;
+  }
+
+  #productEditor .delete-product {
+    width: 180px;
+  }
+}
+
+/* =========================
+   ТЕЛЕФОН
+========================= */
+
+@media (max-width: 600px) {
+
+  .admin {
+    padding: 30px 14px 50px;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+
+  #productEditor .product-row {
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+  }
+
+  #productEditor .product-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  #productEditor .product-name {
+    grid-column: 1 / -1;
+  }
+
+  #productEditor .product-photo-area {
+    width: 100%;
+  }
+
+  #productEditor .photo-box {
+    width: 200px;
+    height: 200px;
+  }
+
+  #productEditor .delete-product {
+    width: 200px;
+  }
+}

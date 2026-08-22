@@ -1,0 +1,23 @@
+.hero-art {
+  position: relative;
+  overflow: hidden;
+  background-image: url("hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 620px;
+}
+
+@media (max-width: 900px) {
+  .hero-art {
+    min-height: 500px;
+    background-position: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-art {
+    min-height: 400px;
+    background-position: center;
+  }
+}
