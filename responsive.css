@@ -1,0 +1,27 @@
+@media (max-width: 600px) {
+  .announcement { padding: 9px 16px; line-height: 1.55; }
+  .announcement span { margin: 0 6px; }
+  header { padding: 0 16px; }
+  .brand { font-size: 25px; }
+  .bag { padding: 10px 12px; }
+  .hero-copy { padding: 52px 24px 38px; }
+  h1 { font-size: clamp(46px, 14vw, 64px); }
+  .lead { font-size: 15px; margin: 25px 0; }
+  .hero-buttons { display: grid; grid-template-columns: 1fr; }
+  .hero-buttons .button { justify-content: space-between; }
+  .hero-art { min-height: 285px; }
+  .wallpaper-sun { background-position: 58% center; }
+  .intro { padding: 70px 24px; }
+  .catalog { padding: 68px 16px; }
+  .section-head { margin-bottom: 30px; }
+  .products { gap: 22px 12px; }
+  .product-art { height: 210px; }
+  .quick-add { bottom: 9px; left: 8px; right: 8px; padding: 9px 6px; font-size: 10px; }
+  .product-info h3 { font-size: 12px; }
+  .product-info p, .product-info strong { font-size: 10px; }
+  .measure { padding: 66px 24px; }
+  .measure .button { width: 100%; justify-content: space-between; }
+  .calculator { padding: 22px; }
+  footer { padding: 31px 24px; }
+  .cart-panel { width: 100%; padding: 21px; }
+}
