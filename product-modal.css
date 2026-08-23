@@ -1,1 +1,207 @@
 .product{cursor:pointer}.product-modal-backdrop{position:fixed;inset:0;background:#102019bb;display:grid;place-items:center;padding:18px;z-index:10;opacity:0;pointer-events:none;transition:.2s}.product-modal-backdrop.show{opacity:1;pointer-events:auto}.product-modal{position:relative;background:#f7f1e7;width:min(470px,100%);padding:36px;color:#18241f}.modal-close{position:absolute;right:18px;top:12px;font-size:31px}.product-modal h2{font-size:42px;margin-bottom:8px}.modal-price{font-size:18px;font-weight:700;margin:0 0 22px}.product-modal ul{padding-left:20px;margin:0 0 24px;line-height:1.8;font-size:14px}.product-modal form{display:grid;gap:11px}.product-modal input{background:transparent;border:1px solid #bfb6a8;padding:13px;font:14px Manrope}.product-modal .button{justify-content:space-between;border:0}@media(max-width:600px){.product-modal{padding:27px 21px}.product-modal h2{font-size:35px}}
+.product{cursor:pointer}
+
+.product-modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:#102019bb;
+  display:grid;
+  place-items:center;
+  padding:18px;
+  z-index:10;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s;
+}
+
+.product-modal-backdrop.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.product-modal{
+  position:relative;
+  background:#f7f1e7;
+  width:min(470px,100%);
+  padding:36px;
+  color:#18241f;
+  max-height:90vh;
+  overflow-y:auto;
+}
+
+.modal-close{
+  position:absolute;
+  right:18px;
+  top:12px;
+  font-size:31px;
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  color:#18241f;
+}
+
+.product-modal h2{
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.modal-price-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.modal-price{
+  font-size:18px;
+  font-weight:700;
+  margin:0;
+}
+
+.modal-kind{
+  font-size:11px;
+  background:#18241f;
+  color:#f7f1e7;
+  padding:4px 10px;
+  border-radius:999px;
+}
+
+.modal-details{
+  display:grid;
+  gap:10px;
+  margin-bottom:22px;
+  border-top:1px solid #bfb6a8;
+  border-bottom:1px solid #bfb6a8;
+  padding:15px 0;
+}
+
+.modal-detail-item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.detail-label{
+  font-size:12px;
+  color:#77736b;
+}
+
+.detail-value{
+  font-size:13px;
+  font-weight:600;
+  text-align:right;
+}
+
+.modal-description{
+  font-size:14px;
+  line-height:1.7;
+  margin-bottom:24px;
+  color:#333;
+}
+
+.product-modal form{
+  display:grid;
+  gap:11px;
+}
+
+.product-modal input{
+  background:transparent;
+  border:1px solid #bfb6a8;
+  padding:13px;
+  font:14px Manrope;
+  border-radius:7px;
+}
+
+.product-modal .button{
+  justify-content:space-between;
+  border:0;
+  width:100%;
+}
+
+.product-modal-image{
+  width:100%;
+  height:200px;
+  border-radius:10px;
+  background:#ddd8cd;
+  margin-bottom:20px;
+  background-size:cover;
+  background-position:center;
+}
+
+@media(max-width:600px){
+  .product-modal{
+    padding:27px 21px;
+  }
+  
+  .product-modal h2{
+    font-size:35px;
+  }
+  
+  .modal-detail-item{
+    flex-direction:column;
+    gap:3px;
+  }
+  
+  .detail-value{
+    text-align:left;
+  }
+}
+
+.modal-new-badge {
+  background: #e74c3c;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-price-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.modal-old-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+  text-decoration-color: #e74c3c;
+  text-decoration-thickness: 2px;
+}
+
+.modal-new-badge,
+.modal-hit-badge,
+.modal-sale-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-new-badge {
+  background: #e74c3c;
+  color: white;
+}
+
+.modal-hit-badge {
+  background: #f39c12;
+  color: white;
+}
+
+.modal-sale-badge {
+  background: #27ae60;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .modal-price-row {
+    gap: 6px;
+  }
+}
