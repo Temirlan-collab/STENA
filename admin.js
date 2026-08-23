@@ -22,34 +22,62 @@ const defaults = {
   products: [
     {
       name: 'Herbier · Olive',
-      description: '',
+      description: 'Спокойные оливковые обои с растительным рисунком. Подойдут для спальни, гостиной или кабинета.',
       price: '18900',
+      oldPrice: '',
       kind: 'calm',
-      photo: ''
+      country: 'Италия',
+      material: 'Флизелин',
+      size: '10 × 0,53 м',
+      photo: '',
+      isNew: true,
+      isHit: false,
+      isSale: false
     },
 
     {
       name: 'Matisse · Coral',
-      description: '',
+      description: 'Выразительные коралловые обои с современным художественным рисунком.',
       price: '21500',
+      oldPrice: '24500',
       kind: 'bold',
-      photo: ''
+      country: 'Бельгия',
+      material: 'Флизелин',
+      size: '10 × 0,53 м',
+      photo: '',
+      isNew: false,
+      isHit: true,
+      isSale: true
     },
 
     {
       name: 'Grid · Ink',
-      description: '',
+      description: 'Минималистичные обои с графическим рисунком. Хорошо смотрятся в современных интерьерах.',
       price: '17200',
+      oldPrice: '',
       kind: 'calm',
-      photo: ''
+      country: 'Германия',
+      material: 'Флизелин',
+      size: '10 × 0,53 м',
+      photo: '',
+      isNew: true,
+      isHit: false,
+      isSale: false
     },
 
     {
       name: 'Aegean · Blue',
-      description: '',
+      description: 'Глубокий синий оттенок и волнообразный рисунок для создания выразительной стены.',
       price: '20400',
+      oldPrice: '22400',
       kind: 'bold',
-      photo: ''
+      country: 'Турция',
+      material: 'Флизелин',
+      size: '10 × 0,53 м',
+      photo: '',
+      isNew: false,
+      isHit: true,
+      isSale: true
     }
   ]
 };
@@ -101,13 +129,41 @@ function normalizeSettings(data) {
               String(product?.price || '0')
                 .replace(/\s/g, ''),
 
+            oldPrice:
+              String(product?.oldPrice || '')
+                .replace(/\s/g, ''),
+
             kind:
               product?.kind ||
               'calm',
 
+            country:
+              product?.country ||
+              '',
+
+            material:
+              product?.material ||
+              'Флизелин',
+
+            size:
+              product?.size ||
+              '10 × 0,53 м',
+
             photo:
               product?.photo ||
-              ''
+              '',
+              
+            isNew:
+              product?.isNew ||
+              false,
+              
+            isHit:
+              product?.isHit ||
+              false,
+              
+            isSale:
+              product?.isSale ||
+              false
           }))
         : structuredClone(defaults.products)
   };
@@ -374,6 +430,13 @@ function createProductRow(
         placeholder="Цена"
       >
 
+      <input
+        class="product-oldprice"
+        type="text"
+        value="${escapeHtml(product.oldPrice || '')}"
+        placeholder="Старая цена (для скидки)"
+      >
+
       <select class="product-kind">
 
         <option
@@ -391,6 +454,56 @@ function createProductRow(
         </option>
 
       </select>
+
+      <input
+        class="product-country"
+        type="text"
+        value="${escapeHtml(product.country || '')}"
+        placeholder="Страна производства"
+      >
+
+      <input
+        class="product-material"
+        type="text"
+        value="${escapeHtml(product.material || 'Флизелин')}"
+        placeholder="Материал"
+      >
+
+      <input
+        class="product-size"
+        type="text"
+        value="${escapeHtml(product.size || '10 × 0,53 м')}"
+        placeholder="Размер рулона"
+      >
+
+      <div class="product-badges">
+        <label class="product-badge-checkbox">
+          <input
+            type="checkbox"
+            class="product-isnew"
+            ${product.isNew ? 'checked' : ''}
+          >
+          <span class="badge-label badge-new">Новинка</span>
+        </label>
+
+        <label class="product-badge-checkbox">
+          <input
+            type="checkbox"
+            class="product-ishit"
+            ${product.isHit ? 'checked' : ''}
+          >
+          <span class="badge-label badge-hit">Хит продаж</span>
+        </label>
+
+        <label class="product-badge-checkbox">
+          <input
+            type="checkbox"
+            class="product-issale"
+            ${product.isSale ? 'checked' : ''}
+          >
+          <span class="badge-label badge-sale">Скидка</span>
+        </label>
+      </div>
 
     </div>
 
@@ -501,11 +614,32 @@ document
         price:
           '0',
 
+        oldPrice:
+          '',
+
         kind:
           'calm',
 
+        country:
+          '',
+
+        material:
+          'Флизелин',
+
+        size:
+          '10 × 0,53 м',
+
         photo:
-          ''
+          '',
+          
+        isNew:
+          false,
+          
+        isHit:
+          false,
+          
+        isSale:
+          false
       });
 
       renderProducts();
@@ -784,15 +918,61 @@ document
                     .trim() ||
                   '0',
 
+                oldPrice:
+                  (
+                    row.querySelector(
+                      '.product-oldprice'
+                    )?.value ||
+                    ''
+                  )
+                    .replace(/\s/g, '')
+                    .trim(),
+
                 kind:
                   row.querySelector(
                     '.product-kind'
                   )?.value ||
                   'calm',
 
+                country:
+                  row.querySelector(
+                    '.product-country'
+                  )?.value.trim() ||
+                  '',
+
+                material:
+                  row.querySelector(
+                    '.product-material'
+                  )?.value.trim() ||
+                  'Флизелин',
+
+                size:
+                  row.querySelector(
+                    '.product-size'
+                  )?.value.trim() ||
+                  '10 × 0,53 м',
+
                 photo:
                   old.photo ||
-                  ''
+                  '',
+                  
+                isNew:
+                  row.querySelector(
+                    '.product-isnew'
+                  )?.checked ||
+                  false,
+                  
+                isHit:
+                  row.querySelector(
+                    '.product-ishit'
+                  )?.checked ||
+                  false,
+                  
+                isSale:
+                  row.querySelector(
+                    '.product-issale'
+                  )?.checked ||
+                  false
               };
             }
           );
