@@ -590,3 +590,133 @@
     max-width: 200px;
   }
 }
+
+/* Новые поля товара */
+#productEditor .product-fields {
+  grid-template-columns: minmax(0, 1fr) 130px;
+  grid-template-rows: 42px 70px 42px 42px 42px 42px;
+}
+
+#productEditor .product-description {
+  grid-column: 1 / -1;
+  height: 70px;
+  padding: 9px 10px;
+  resize: vertical;
+}
+
+#productEditor .product-country,
+#productEditor .product-material,
+#productEditor .product-size {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 600px) {
+  #productEditor .product-fields {
+    grid-template-columns: 1fr;
+  }
+  
+  #productEditor .product-name,
+  #productEditor .product-price,
+  #productEditor .product-kind,
+  #productEditor .product-country,
+  #productEditor .product-material,
+  #productEditor .product-size {
+    grid-column: 1;
+  }
+}
+
+/* =========================
+   БЕЙДЖИ ТОВАРА
+========================= */
+
+.product-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+.product-badge-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.product-badge-checkbox input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: #e74c3c;
+}
+
+.badge-label {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  user-select: none;
+  line-height: 1;
+}
+
+.badge-new {
+  background: #e74c3c;
+  color: white;
+}
+
+.badge-hit {
+  background: #f39c12;
+  color: white;
+}
+
+.badge-sale {
+  background: #27ae60;
+  color: white;
+}
+
+.product-badge-checkbox:hover {
+  background: #f5f3ee;
+  border-color: #e0dcd4;
+}
+
+.product-badge-checkbox input:not(:checked) + .badge-label {
+  opacity: 0.5;
+  filter: grayscale(50%);
+}
+
+.product-badge-checkbox input:checked + .badge-label {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Поле старой цены */
+#productEditor .product-oldprice {
+  grid-column: 1 / -1;
+}
+
+/* Обновляем grid для новых полей */
+#productEditor .product-fields {
+  grid-template-columns: minmax(0, 1fr) 130px;
+  grid-template-rows: 42px 70px 42px 42px 42px 42px 42px 42px 42px;
+}
+
+@media (max-width: 600px) {
+  #productEditor .product-fields {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .product-badges {
+    flex-direction: column;
+  }
+  
+  .product-badge-checkbox {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
