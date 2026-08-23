@@ -1,19 +1,23 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>STENA — обои для дома</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet"
+  >
 
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="hero.css" />
-  <link rel="stylesheet" href="responsive.css" />
-  <link rel="stylesheet" href="product-modal.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero.css">
+  <link rel="stylesheet" href="responsive.css">
+
 </head>
 
 <body>
@@ -25,7 +29,10 @@
   </div>
 
   <header>
-    <a class="brand" href="#top">STE<span>NA</span></a>
+
+    <a class="brand" href="#top">
+      STE<span>NA</span>
+    </a>
 
     <nav aria-label="Основная навигация">
       <a href="#catalog">Коллекции</a>
@@ -35,21 +42,41 @@
     </nav>
 
     <div class="header-actions">
-      <button class="text-button" id="searchButton" aria-label="Поиск">
+
+      <button
+        class="text-button"
+        id="searchButton"
+        type="button">
         Поиск
       </button>
 
-      <button class="bag" id="cartButton" aria-label="Открыть корзину">
-        Корзина <span id="cartCount">0</span>
+      <button
+        class="bag"
+        id="cartButton"
+        type="button"
+        aria-label="Открыть корзину">
+
+        Корзина
+        <span id="cartCount">0</span>
+
       </button>
+
     </div>
+
   </header>
+
 
   <main id="top">
 
+    <!-- HERO -->
+
     <section class="hero">
+
       <div class="hero-copy">
-        <p class="eyebrow">Новая коллекция · 2026</p>
+
+        <p class="eyebrow">
+          Новая коллекция · 2026
+        </p>
 
         <h1>
           Дом начинается<br>
@@ -62,24 +89,47 @@
         </p>
 
         <div class="hero-buttons">
-          <a class="button dark" href="#catalog">
-            Смотреть коллекцию <span>→</span>
+
+          <a
+            class="button dark"
+            href="#catalog">
+
+            Смотреть коллекцию
+            <span>→</span>
+
           </a>
 
-          <a class="button line" href="#how">
-            Посчитать расход рулонов.
+          <a
+            class="button line"
+            href="#how">
+
+            Посчитать расход рулонов
+
           </a>
+
         </div>
+
       </div>
 
-      <div class="hero-art"
+
+      <div
+        class="hero-art"
         role="img"
-        -label="Шоурум STENA">
+        aria-label="Шоурум STENA">
       </div>
+
     </section>
 
-    <section class="intro" id="about">
-      <p class="eyebrow">STENA / о материале</p>
+
+    <!-- О НАС -->
+
+    <section
+      class="intro"
+      id="about">
+
+      <p class="eyebrow">
+        STENA / о материале
+      </p>
 
       <h2>
         Красота, которую<br>
@@ -87,137 +137,302 @@
       </h2>
 
       <p>
-        Мы продаём качественные обои для дома: флизелиновые,
-        виниловые, текстильные и влагостойкие варианты для кухни
-        и ванной. Выберайте фактуру, оттенок и рисунок для любого
-        интерьера.
+        Мы продаём качественные обои для дома:
+        флизелиновые, виниловые, текстильные
+        и влагостойкие варианты для кухни и ванной.
+        Выбирайте фактуру, оттенок и рисунок
+        для любого интерьера.
       </p>
 
-      <a href="#catalog" class="underlink">
-        Все материалы и фактуры <span>→</span>
+      <a
+        href="#catalog"
+        class="underlink">
+
+        Все материалы и фактуры
+        <span>→</span>
+
       </a>
+
     </section>
 
-    <section class="catalog" id="catalog">
+
+    <!-- КАТАЛОГ -->
+
+    <section
+      class="catalog"
+      id="catalog">
 
       <div class="section-head">
+
         <div>
-          <p class="eyebrow">Выберите настроение</p>
-          <h2>Коллекции</h2>
+
+          <p class="eyebrow">
+            Выберите настроение
+          </p>
+
+          <h2>
+            Коллекции
+          </h2>
+
         </div>
+
 
         <div class="filters">
-          <button class="filter active" data-filter="all">
+
+          <button
+            class="filter active"
+            type="button"
+            data-filter="all">
+
             Все
+
           </button>
 
-          <button class="filter" data-filter="calm">
+          <button
+            class="filter"
+            type="button"
+            data-filter="calm">
+
             Спокойные
+
           </button>
 
-          <button class="filter" data-filter="bold">
+          <button
+            class="filter"
+            type="button"
+            data-filter="bold">
+
             Акцентные
+
           </button>
+
         </div>
+
       </div>
+
 
       <div class="products">
 
-        <article class="product" data-kind="calm">
+
+        <!-- ТОВАР 1 -->
+
+        <article
+          class="product"
+          data-kind="calm"
+          data-description="Спокойные оливковые обои с растительным рисунком. Подойдут для спальни, гостиной или кабинета."
+          data-material="Флизелин"
+          data-size="10 × 0,53 м">
+
           <div class="product-art wallpaper-garden">
-            <span>01</span>
+
+            <span>
+              01
+            </span>
 
             <button
               class="quick-add"
+              type="button"
               data-name="Herbier · Olive"
-              data-price="18 900">
+              data-price="18900">
+
               В корзину +
+
             </button>
+
           </div>
+
 
           <div class="product-info">
+
             <div>
-              <h3>Herbier · Olive</h3>
-              <p>Флизелин · 10 × 0,53 м</p>
+
+              <h3>
+                Herbier · Olive
+              </h3>
+
+              <p>
+                Флизелин · 10 × 0,53 м
+              </p>
+
             </div>
 
-            <strong>18 900 ₸</strong>
+            <strong>
+              18 900 ₸
+            </strong>
+
           </div>
+
         </article>
 
-        <article class="product" data-kind="bold">
+
+        <!-- ТОВАР 2 -->
+
+        <article
+          class="product"
+          data-kind="bold"
+          data-description="Выразительные коралловые обои с современным художественным рисунком."
+          data-material="Флизелин"
+          data-size="10 × 0,53 м">
+
           <div class="product-art wallpaper-coral">
-            <span>02</span>
+
+            <span>
+              02
+            </span>
 
             <button
               class="quick-add"
+              type="button"
               data-name="Matisse · Coral"
-              data-price="21 500">
+              data-price="21500">
+
               В корзину +
+
             </button>
+
           </div>
+
 
           <div class="product-info">
+
             <div>
-              <h3>Matisse · Coral</h3>
-              <p>Флизелин · 10 × 0,53 м</p>
+
+              <h3>
+                Matisse · Coral
+              </h3>
+
+              <p>
+                Флизелин · 10 × 0,53 м
+              </p>
+
             </div>
 
-            <strong>21 500 ₸</strong>
+            <strong>
+              21 500 ₸
+            </strong>
+
           </div>
+
         </article>
 
-        <article class="product" data-kind="calm">
+
+        <!-- ТОВАР 3 -->
+
+        <article
+          class="product"
+          data-kind="calm"
+          data-description="Минималистичные обои с графическим рисунком. Хорошо смотрятся в современных интерьерах."
+          data-material="Флизелин"
+          data-size="10 × 0,53 м">
+
           <div class="product-art wallpaper-grid">
-            <span>03</span>
+
+            <span>
+              03
+            </span>
 
             <button
               class="quick-add"
+              type="button"
               data-name="Grid · Ink"
-              data-price="17 200">
+              data-price="17200">
+
               В корзину +
+
             </button>
+
           </div>
+
 
           <div class="product-info">
+
             <div>
-              <h3>Grid · Ink</h3>
-              <p>Флизелин · 10 × 0,53 м</p>
+
+              <h3>
+                Grid · Ink
+              </h3>
+
+              <p>
+                Флизелин · 10 × 0,53 м
+              </p>
+
             </div>
 
-            <strong>17 200 ₸</strong>
+            <strong>
+              17 200 ₸
+            </strong>
+
           </div>
+
         </article>
 
-        <article class="product" data-kind="bold">
+
+        <!-- ТОВАР 4 -->
+
+        <article
+          class="product"
+          data-kind="bold"
+          data-description="Глубокий синий оттенок и волнообразный рисунок для создания выразительной стены."
+          data-material="Флизелин"
+          data-size="10 × 0,53 м">
+
           <div class="product-art wallpaper-wave">
-            <span>04</span>
+
+            <span>
+              04
+            </span>
 
             <button
               class="quick-add"
+              type="button"
               data-name="Aegean · Blue"
-              data-price="20 400">
+              data-price="20400">
+
               В корзину +
+
             </button>
+
           </div>
+
 
           <div class="product-info">
+
             <div>
-              <h3>Aegean · Blue</h3>
-              <p>Флизелин · 10 × 0,53 м</p>
+
+              <h3>
+                Aegean · Blue
+              </h3>
+
+              <p>
+                Флизелин · 10 × 0,53 м
+              </p>
+
             </div>
 
-            <strong>20 400 ₸</strong>
+            <strong>
+              20 400 ₸
+            </strong>
+
           </div>
+
         </article>
 
       </div>
+
     </section>
 
-    <section class="measure" id="how">
+
+    <!-- КАЛЬКУЛЯТОР -->
+
+    <section
+      class="measure"
+      id="how">
 
       <div>
-        <p class="eyebrow">Не знаете, сколько нужно?</p>
+
+        <p class="eyebrow">
+          Не знаете, сколько нужно?
+        </p>
 
         <h2>
           Рассчитаем<br>
@@ -225,21 +440,21 @@
         </h2>
 
         <p>
-          Пришлите размеры комнаты — посчитаем примерное количество
-          рулонов с запасом.
+          Пришлите размеры комнаты — посчитаем
+          примерное количество рулонов с запасом.
         </p>
 
-        <a
-          href="mailto:hello@stena.kz"
-          class="button dark">
-          Рассчитать метраж <span>→</span>
-        </a>
       </div>
 
-      <form class="calculator" id="calculator">
+
+      <form
+        class="calculator"
+        id="calculator">
 
         <label>
+
           Ширина стен, м
+
           <input
             required
             type="number"
@@ -247,10 +462,14 @@
             min="1"
             name="width"
             placeholder="Например, 12">
+
         </label>
 
+
         <label>
+
           Высота потолка, м
+
           <input
             required
             type="number"
@@ -258,23 +477,42 @@
             min="1"
             name="height"
             placeholder="Например, 2.7">
+
         </label>
+
 
         <button
           class="button light"
           type="submit">
+
           Посчитать рулоны
+
         </button>
 
-        <p id="calcResult" aria-live="polite"></p>
+
+        <p
+          id="calcResult"
+          aria-live="polite">
+        </p>
 
       </form>
+
     </section>
 
   </main>
 
+
+  <!-- FOOTER -->
+
   <footer>
-    <a class="brand" href="#top">STE<span>NA</span></a>
+
+    <a
+      class="brand"
+      href="#top">
+
+      STE<span>NA</span>
+
+    </a>
 
     <p>
       Обои с характером · Астана, Казахстан
@@ -287,7 +525,11 @@
     <a href="mailto:hello@stena.kz">
       hello@stena.kz
     </a>
+
   </footer>
+
+
+  <!-- КОРЗИНА -->
 
   <aside
     class="cart-panel"
@@ -295,44 +537,165 @@
     aria-hidden="true">
 
     <div class="cart-top">
-      <h2>Корзина</h2>
+
+      <h2>
+        Корзина
+      </h2>
 
       <button
         id="closeCart"
+        type="button"
         aria-label="Закрыть">
+
         ×
+
       </button>
+
     </div>
 
+
     <div id="cartItems">
+
       <p class="empty">
+
         Здесь пока пусто.<br>
         Выберите обои из коллекции.
+
       </p>
+
     </div>
+
 
     <div class="cart-bottom">
 
       <div>
-        <span>Итого</span>
-        <strong id="cartTotal">0 ₸</strong>
+
+        <span>
+          Итого
+        </span>
+
+        <strong id="cartTotal">
+          0 ₸
+        </strong>
+
       </div>
 
-      <button class="button dark full">
+
+      <button
+        class="button dark full"
+        id="checkoutWhatsApp"
+        type="button"
+      >
         Оформить заказ <span>→</span>
       </button>
 
     </div>
+
   </aside>
 
-  <div class="overlay" id="overlay"></div>
 
-  <script src="script.js"></script>
+  <div
+    class="overlay"
+    id="overlay">
+  </div>
+
+
+  <!-- МОДАЛЬНОЕ ОКНО ТОВАРА -->
+
+  <div
+    class="product-modal"
+    id="productModal"
+    aria-hidden="true">
+
+    <div
+      class="product-modal-box">
+
+      <button
+        class="product-modal-close"
+        id="productModalClose"
+        type="button">
+
+        ×
+
+      </button>
+
+
+      <div
+        class="product-modal-image"
+        id="productModalImage">
+      </div>
+
+
+      <div class="product-modal-info">
+
+        <p
+          class="eyebrow"
+          id="productModalCategory">
+        </p>
+
+        <h2
+          id="productModalName">
+        </h2>
+
+        <strong
+          id="productModalPrice">
+        </strong>
+
+
+        <div class="product-modal-details">
+
+          <div>
+
+            <span>
+              Материал
+            </span>
+
+            <b id="productModalMaterial">
+            </b>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Размер
+            </span>
+
+            <b id="productModalSize">
+            </b>
+
+          </div>
+
+        </div>
+
+
+        <p
+          id="productModalDescription">
+        </p>
+
+
+        <button
+          class="button dark full"
+          id="productModalAdd"
+          type="button">
+
+          Добавить в корзину +
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="supabase-config.js"></script>
   <script src="public-admin.js"></script>
   <script src="public-photo.js"></script>
-  <script src="supabase-config.js"></script>
   <script src="supabase-sync.js"></script>
-  <script src="product-modal.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
