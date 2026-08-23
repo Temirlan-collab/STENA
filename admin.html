@@ -77,28 +77,23 @@
 
     <nav class="admin-nav">
 
-      <button
-        class="admin-nav-item active"
-        data-section="catalog"
-      >
-        Каталог
-      </button>
+  <button
+    class="admin-nav-item active"
+    data-section="catalog"
+    type="button"
+  >
+    Каталог
+  </button>
 
-      <button
-        class="admin-nav-item"
-        data-section="orders"
-      >
-        Заказы
-      </button>
+  <button
+    class="admin-nav-item"
+    data-section="settings"
+    type="button"
+  >
+    Настройки
+  </button>
 
-      <button
-        class="admin-nav-item"
-        data-section="settings"
-      >
-        Настройки
-      </button>
-
-    </nav>
+</nav>
 
 
     <!-- =====================
@@ -122,14 +117,6 @@
           </h2>
         </div>
 
-        <button
-          class="button dark"
-          id="addProduct"
-          type="button"
-        >
-          + Добавить товар
-        </button>
-
       </div>
 
 
@@ -144,59 +131,25 @@
 
         <button
           class="button dark"
+          id="addProduct"
+          type="button"
+        >
+          Добавить товар +
+        </button>
+
+        <button
+          class="button dark"
           id="saveProducts"
           type="button"
         >
           Сохранить каталог →
-        </button>
+      </button>
 
-      </div>
-
-    </section>
-
-
-    <!-- =====================
-         ЗАКАЗЫ
-    ====================== -->
-
-    <section
-      class="admin-section"
-      id="section-orders"
-    >
-
-      <div class="section-title">
-
-        <div>
-          <p class="eyebrow">
-            Магазин
-          </p>
-
-          <h2>
-            Заказы
-          </h2>
-        </div>
-
-      </div>
-
-      <div class="empty-section">
-
-        <div class="empty-icon">
-          —
-        </div>
-
-        <h3>
-          Заказов пока нет
-        </h3>
-
-        <p>
-          Здесь будут отображаться заказы клиентов.
-        </p>
-
-      </div>
+</div>
 
     </section>
 
-
+    
     <!-- =====================
          НАСТРОЙКИ
     ====================== -->
@@ -232,6 +185,7 @@
             Основная информация
           </h3>
 
+
           <label>
 
             <span>
@@ -256,6 +210,22 @@
             <input
               type="text"
               name="announcement"
+              required
+            >
+
+          </label>
+
+
+          <label>
+
+            <span>
+              Телефон WhatsApp для заявок
+            </span>
+
+            <input
+              type="tel"
+              name="whatsapp"
+              placeholder="+7 777 123 45 67"
               required
             >
 
