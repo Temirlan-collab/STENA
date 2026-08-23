@@ -979,3 +979,40 @@ footer a:last-child {
     width: 100%;
   }
 }
+
+
+/* =========================
+   ПЛАВАЮЩАЯ КОРЗИНА
+========================= */
+
+#floatingCartSlot {
+  position: fixed;
+
+  right: 24px;
+  bottom: 24px;
+
+  z-index: 80;
+
+  pointer-events: none;
+}
+
+#floatingCartSlot #cartButton {
+  pointer-events: auto;
+
+  background: var(--white);
+  color: var(--text);
+
+  border: 1px solid var(--line);
+  border-radius: 999px;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, .12);
+}
+
+@media (max-width: 600px) {
+
+  #floatingCartSlot {
+    right: 14px;
+    bottom: 14px;
+  }
+
+}
