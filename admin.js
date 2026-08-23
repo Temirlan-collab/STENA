@@ -17,30 +17,36 @@ const defaults = {
   announcement:
     'Бесплатная доставка по Астане при заказе от 50 000 ₸',
 
-  whatsapp:
-    '',
+  whatsapp: '',
 
   products: [
     {
       name: 'Herbier · Olive',
+      description: '',
       price: '18900',
       kind: 'calm',
       photo: ''
     },
+
     {
       name: 'Matisse · Coral',
+      description: '',
       price: '21500',
       kind: 'bold',
       photo: ''
     },
+
     {
       name: 'Grid · Ink',
+      description: '',
       price: '17200',
       kind: 'calm',
       photo: ''
     },
+
     {
       name: 'Aegean · Blue',
+      description: '',
       price: '20400',
       kind: 'bold',
       photo: ''
@@ -87,6 +93,10 @@ function normalizeSettings(data) {
               product?.name ||
               'Новый товар',
 
+            description:
+              product?.description ||
+              '',
+
             price:
               String(product?.price || '0')
                 .replace(/\s/g, ''),
@@ -109,9 +119,7 @@ function normalizeSettings(data) {
 ========================================= */
 
 async function loadSettings() {
-
   try {
-
     const response = await fetch(
       `${adminSupabase.url}/rest/v1/site_settings?id=eq.1&select=data`,
       {
@@ -128,30 +136,24 @@ async function loadSettings() {
       }
     );
 
-
     if (!response.ok) {
       throw new Error(
         await response.text()
       );
     }
 
-
     const rows =
       await response.json();
-
 
     if (
       rows.length &&
       rows[0].data
     ) {
-
       settings =
         normalizeSettings(
           rows[0].data
         );
-
     } else {
-
       settings =
         structuredClone(
           defaults
@@ -160,16 +162,13 @@ async function loadSettings() {
       await saveSettings();
     }
 
-
     localStorage.setItem(
       'stenaSettings',
       JSON.stringify(settings)
     );
 
-
     renderSettings();
     renderProducts();
-
 
   } catch (error) {
 
@@ -178,32 +177,26 @@ async function loadSettings() {
       error
     );
 
-
     let local = null;
 
     try {
-
       local =
         JSON.parse(
           localStorage.getItem(
             'stenaSettings'
           ) || 'null'
         );
-
     } catch {
       local = null;
     }
-
 
     settings =
       normalizeSettings(
         local || defaults
       );
 
-
     renderSettings();
     renderProducts();
-
 
     alert(
       'Не удалось загрузить данные Supabase. Используются локальные данные.'
@@ -225,7 +218,6 @@ async function saveSettings() {
         method: 'PATCH',
 
         headers: {
-
           apikey:
             adminSupabase.key,
 
@@ -246,14 +238,11 @@ async function saveSettings() {
       }
     );
 
-
   if (!response.ok) {
-
     throw new Error(
       await response.text()
     );
   }
-
 
   localStorage.setItem(
     'stenaSettings',
@@ -273,26 +262,33 @@ function renderSettings() {
       '#settingsForm'
     );
 
+  if (!form) {
+    console.warn(
+      'STENA: settingsForm не найден'
+    );
 
-  if (!form) return;
-
+    return;
+  }
 
   if (form.city) {
     form.city.value =
-      settings.city;
+      settings.city || '';
   }
-
 
   if (form.announcement) {
     form.announcement.value =
-      settings.announcement;
+      settings.announcement || '';
   }
-
 
   if (form.whatsapp) {
     form.whatsapp.value =
       settings.whatsapp || '';
   }
+
+  console.log(
+    'STENA: настройки загружены',
+    settings
+  );
 }
 
 
@@ -304,37 +300,29 @@ document
 
       event.preventDefault();
 
-
       const form =
         event.currentTarget;
-
 
       settings.city =
         form.city.value.trim();
 
-
       settings.announcement =
         form.announcement.value.trim();
 
-
       settings.whatsapp =
         form.whatsapp.value.trim();
-
 
       try {
 
         await saveSettings();
 
-
         alert(
           'Настройки сохранены в Supabase.'
         );
 
-
       } catch (error) {
 
         console.error(error);
-
 
         alert(
           'Ошибка сохранения настроек:\n' +
@@ -359,10 +347,8 @@ function createProductRow(
       'div'
     );
 
-
   row.className =
     'product-row';
-
 
   row.innerHTML = `
 
@@ -374,6 +360,12 @@ function createProductRow(
         value="${escapeHtml(product.name)}"
         placeholder="Название товара"
       >
+
+      <textarea
+        class="product-description"
+        placeholder="Описание товара"
+        rows="3"
+      >${escapeHtml(product.description)}</textarea>
 
       <input
         class="product-price"
@@ -454,7 +446,6 @@ function createProductRow(
 
   `;
 
-
   return row;
 }
 
@@ -470,12 +461,9 @@ function renderProducts() {
       '#productEditor'
     );
 
-
   if (!editor) return;
 
-
   editor.innerHTML = '';
-
 
   settings.products.forEach(
     (product, index) => {
@@ -502,10 +490,13 @@ document
     'click',
     () => {
 
-      settings.products.push({
+      settings.products.unshift({
 
         name:
           'Новый товар',
+
+        description:
+          '',
 
         price:
           '0',
@@ -516,7 +507,6 @@ document
         photo:
           ''
       });
-
 
       renderProducts();
     }
@@ -538,15 +528,12 @@ document
           '.delete-product'
         );
 
-
       if (!button) return;
-
 
       const index =
         Number(
           button.dataset.index
         );
-
 
       if (
         !confirm(
@@ -556,12 +543,10 @@ document
         return;
       }
 
-
       settings.products.splice(
         index,
         1
       );
-
 
       renderProducts();
     }
@@ -583,25 +568,19 @@ document
           '.photo-upload'
         );
 
-
       if (!input) return;
-
 
       const row =
         input.closest(
           '.product-row'
         );
 
-
       if (!row) return;
-
 
       const file =
         input.files?.[0];
 
-
       if (!file) return;
-
 
       if (
         file.size >
@@ -612,26 +591,20 @@ document
           'Фото должно быть меньше 10 МБ.'
         );
 
-
         input.value = '';
-
 
         return;
       }
-
 
       const preview =
         row.querySelector(
           '.product-preview'
         );
 
-
       if (!preview) return;
-
 
       const reader =
         new FileReader();
-
 
       reader.onload =
         () => {
@@ -646,7 +619,6 @@ document
 
           `;
         };
-
 
       reader.readAsDataURL(
         file
@@ -671,7 +643,6 @@ async function uploadPhoto(
     );
   }
 
-
   if (
     file.size >
     10 * 1024 * 1024
@@ -682,17 +653,9 @@ async function uploadPhoto(
     );
   }
 
-
-  /*
-     Используем bucket из supabase-config.js,
-     а если его там нет — автоматически
-     используем wallpapers.
-  */
-
   const bucket =
     adminSupabase.bucket ||
     'wallpapers';
-
 
   const extension =
     file.name
@@ -701,17 +664,14 @@ async function uploadPhoto(
       ?.toLowerCase() ||
     'jpg';
 
-
   const fileName =
     `product-${Date.now()}-${index}.${extension}`;
-
 
   const uploadUrl =
     `${adminSupabase.url}` +
     `/storage/v1/object/` +
     `${bucket}/` +
     `${fileName}`;
-
 
   const response =
     await fetch(
@@ -740,7 +700,6 @@ async function uploadPhoto(
       }
     );
 
-
   if (!response.ok) {
 
     throw new Error(
@@ -748,7 +707,6 @@ async function uploadPhoto(
       await response.text()
     );
   }
-
 
   return (
     `${adminSupabase.url}` +
@@ -774,17 +732,13 @@ document
           '#saveProducts'
         );
 
-
       if (!button) return;
-
 
       button.disabled =
         true;
 
-
       button.textContent =
         'Сохранение...';
-
 
       try {
 
@@ -794,10 +748,8 @@ document
           )
         ];
 
-
         const oldProducts =
           settings.products;
-
 
         const newProducts =
           rows.map(
@@ -807,7 +759,6 @@ document
                 oldProducts[index] ||
                 {};
 
-
               return {
 
                 name:
@@ -816,6 +767,11 @@ document
                   )?.value.trim() ||
                   'Новый товар',
 
+                description:
+                  row.querySelector(
+                    '.product-description'
+                  )?.value.trim() ||
+                  '',
 
                 price:
                   (
@@ -828,13 +784,11 @@ document
                     .trim() ||
                   '0',
 
-
                 kind:
                   row.querySelector(
                     '.product-kind'
                   )?.value ||
                   'calm',
-
 
                 photo:
                   old.photo ||
@@ -842,7 +796,6 @@ document
               };
             }
           );
-
 
         settings.products =
           newProducts;
@@ -861,26 +814,21 @@ document
               '.photo-upload'
             );
 
-
           const file =
             input?.files?.[0];
-
 
           if (!file) {
             continue;
           }
 
-
           button.textContent =
             `Загрузка фото ${i + 1}/${rows.length}...`;
-
 
           const photoUrl =
             await uploadPhoto(
               file,
               i
             );
-
 
           settings.products[i].photo =
             photoUrl;
@@ -892,17 +840,13 @@ document
         button.textContent =
           'Сохранение каталога...';
 
-
         await saveSettings();
 
-
         renderProducts();
-
 
         alert(
           'Каталог и фотографии сохранены в Supabase.'
         );
-
 
       } catch (error) {
 
@@ -911,18 +855,15 @@ document
           error
         );
 
-
         alert(
           'Ошибка сохранения:\n\n' +
           error.message
         );
 
-
       } finally {
 
         button.disabled =
           false;
-
 
         button.textContent =
           'Сохранить каталог →';
@@ -950,31 +891,25 @@ document
         return;
       }
 
-
       settings =
         structuredClone(
           defaults
         );
 
-
       try {
 
         await saveSettings();
 
-
         renderSettings();
         renderProducts();
-
 
         alert(
           'Данные сброшены.'
         );
 
-
       } catch (error) {
 
         console.error(error);
-
 
         alert(
           'Ошибка сброса:\n' +
@@ -986,7 +921,59 @@ document
 
 
 /* =========================================
-   СТАРТ
+   НАВИГАЦИЯ АДМИНКИ
+========================================= */
+
+document
+  .querySelectorAll('.admin-nav-item')
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        const sectionName =
+          button.dataset.section;
+
+        document
+          .querySelectorAll('.admin-nav-item')
+          .forEach(item => {
+            item.classList.remove(
+              'active'
+            );
+          });
+
+        button.classList.add(
+          'active'
+        );
+
+        document
+          .querySelectorAll('.admin-section')
+          .forEach(section => {
+            section.classList.remove(
+              'active'
+            );
+          });
+
+        const section =
+          document.querySelector(
+            `#section-${sectionName}`
+          );
+
+        if (section) {
+          section.classList.add(
+            'active'
+          );
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================================
+   ЗАПУСК
 ========================================= */
 
 loadSettings();
