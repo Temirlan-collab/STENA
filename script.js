@@ -482,6 +482,247 @@ if (calculator) {
 }
 
 /* =========================================
+   ОБРАБОТЧИКИ КНОПОК РЕКЛАМЫ
+========================================= */
+
+// Глобальная функция для обработки кликов на кнопку "Заказать" в рекламе
+function handleAdOrderClick(button) {
+  const adTitle = button.dataset.adTitle || 'Акция';
+  const adDiscount = button.dataset.adDiscount || '';
+  
+  openAdOrderModal({
+    type: 'default',
+    title: adTitle,
+    discount: adDiscount
+  });
+}
+
+// Делегирование событий для всех кнопок рекламы
+document.addEventListener('click', function(e) {
+  
+  // Кнопка "Заказать" в рекламе
+  const adOrderBtn = e.target.closest('.ad-order-btn');
+  if (adOrderBtn) {
+    e.preventDefault();
+    handleAdOrderClick(adOrderBtn);
+    return;
+  }
+  
+  // Кнопка "Смотреть коллекцию" / "Перейти к каталогу"
+  const adCatalogBtn = e.target.closest('.ad-catalog-btn');
+  if (adCatalogBtn) {
+    e.preventDefault();
+    
+    const catalog = document.querySelector('#catalog');
+    if (catalog) {
+      catalog.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    return;
+  }
+  
+  // Кнопка "Подробнее"
+  const adMoreBtn = e.target.closest('.ad-more-btn');
+  if (adMoreBtn) {
+    e.preventDefault();
+    
+    const catalog = document.querySelector('#catalog');
+    if (catalog) {
+      catalog.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    return;
+  }
+  
+  // Закрытие баннера
+  const adCloseBtn = e.target.closest('.ad-close');
+  if (adCloseBtn) {
+    const ad = adCloseBtn.closest('.ad-banner');
+    if (ad) {
+      ad.style.display = 'none';
+    }
+    return;
+  }
+});
+
+/* =========================================
+   МОДАЛЬНОЕ ОКНО ЗАКАЗА РЕКЛАМЫ
+========================================= */
+
+function openAdOrderModal(adData) {
+  
+  // Удаляем предыдущее модальное окно, если есть
+  const existingModal = document.querySelector('#adOrderModal');
+  if (existingModal) {
+    existingModal.remove();
+  }
+  
+  // Создаем модальное окно
+  const modalHTML = `
+    <div class="ad-order-modal-backdrop" id="adOrderModal">
+      <div class="ad-order-modal">
+        <button class="ad-order-modal-close" aria-label="Закрыть">×</button>
+        
+        <div class="ad-order-modal-content">
+          <p class="eyebrow">Реклама</p>
+          <h2>${adData.title}</h2>
+          
+          ${adData.discount ? `<div class="ad-order-discount">${adData.discount}</div>` : ''}
+          
+          <p class="ad-order-description">
+            Оставьте заявку, и мы свяжемся с вами для уточнения деталей.
+          </p>
+          
+          <form id="adOrderForm">
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+            <input type="text" name="comment" placeholder="Комментарий (необязательно)">
+            
+            <button type="submit" class="button dark full">Отправить заявку →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Добавляем модальное окно на страницу
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
+  
+  // Получаем элементы
+  const modal = document.querySelector('#adOrderModal');
+  const closeBtn = modal.querySelector('.ad-order-modal-close');
+  const form = modal.querySelector('#adOrderForm');
+  
+  // Показываем модальное окно
+  setTimeout(() => {
+    modal.classList.add('show');
+  }, 10);
+  
+  // Закрытие по крестику
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+  });
+  
+  // Закрытие по клику на фон
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.remove();
+      }, 300);
+    }
+  });
+  
+  // Закрытие по Escape
+  document.addEventListener('keydown', function closeOnEscape(e) {
+    if (e.key === 'Escape') {
+      modal.classList.remove('show');
+      setTimeout(() => {
+        modal.remove();
+      }, 300);
+      document.removeEventListener('keydown', closeOnEscape);
+    }
+  });
+  
+  // Обработка отправки формы
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const phone = formData.get('phone');
+    const comment = formData.get('comment');
+    
+    // Получаем номер WhatsApp
+    const whatsapp = getWhatsAppNumber();
+    
+    if (!whatsapp) {
+      alert('Укажите номер WhatsApp в настройках магазина.');
+      return;
+    }
+    
+    // Формируем сообщение
+    let message = `Здравствуйте! Хочу воспользоваться акцией: ${adData.title}.\n\n`;
+    message += `Имя: ${name}\n`;
+    message += `Телефон: ${phone}\n`;
+    
+    if (comment) {
+      message += `Комментарий: ${comment}\n`;
+    }
+    
+    if (adData.discount) {
+      message += `\nСкидка: ${adData.discount}\n`;
+    }
+    
+    // Отправляем в WhatsApp
+    const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+    
+    // Закрываем модальное окно
+    modal.classList.remove('show');
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
+    
+    // Показываем уведомление
+    alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+  });
+}
+
+/* =========================================
+   ЗАКРЫТИЕ РЕКЛАМЫ
+========================================= */
+
+// Плавающая реклама
+const floatingAd = document.querySelector('#floatingAd');
+
+if (floatingAd) {
+  setTimeout(() => {
+    floatingAd.classList.add('show');
+  }, 3000);
+  
+  const floatingAdClose = floatingAd.querySelector('.floating-ad-close');
+  
+  if (floatingAdClose) {
+    floatingAdClose.addEventListener('click', () => {
+      floatingAd.style.display = 'none';
+    });
+  }
+}
+
+// Полноэкранная реклама (раз в сессию)
+const fullscreenAd = document.querySelector('#fullscreenAd');
+
+if (fullscreenAd && !sessionStorage.getItem('adShown')) {
+  setTimeout(() => {
+    fullscreenAd.classList.add('show');
+  }, 1500);
+}
+
+// Закрытие полноэкранной рекламы
+const fullscreenAdClose = document.querySelector('.fullscreen-ad-close');
+
+if (fullscreenAdClose) {
+  fullscreenAdClose.addEventListener('click', () => {
+    fullscreenAd.classList.remove('show');
+    sessionStorage.setItem('adShown', 'true');
+  });
+}
+
+// Закрытие по клику на фон
+if (fullscreenAd) {
+  fullscreenAd.addEventListener('click', (e) => {
+    if (e.target === fullscreenAd) {
+      fullscreenAd.classList.remove('show');
+      sessionStorage.setItem('adShown', 'true');
+    }
+  });
+}
+
+/* =========================================
    СКРЫТЫЙ ВХОД В АДМИНКУ
    Нажмите Ctrl + Shift + A (или Cmd + Shift + A на Mac)
 ========================================= */
@@ -501,17 +742,33 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* =========================================
-   ЗАКРЫТИЕ РЕКЛАМЫ
+   СКРЫТЫЙ ВХОД В АДМИНКУ (запасной вариант)
+   Тройной клик по логотипу в шапке
 ========================================= */
 
-document.querySelectorAll('.ad-close').forEach(button => {
-  button.addEventListener('click', () => {
-    const ad = button.closest('.ad-banner');
-    if (ad) {
-      ad.style.display = 'none';
+const headerBrand = document.querySelector('header .brand');
+
+if (headerBrand) {
+  let brandClicks = 0;
+  let brandTimer;
+
+  headerBrand.addEventListener('click', (e) => {
+    // Не мешаем обычному переходу по якорю
+    e.preventDefault();
+
+    brandClicks++;
+
+    clearTimeout(brandTimer);
+
+    brandTimer = setTimeout(() => {
+      brandClicks = 0;
+    }, 2000);
+
+    if (brandClicks >= 3) {
+      window.location.href = 'admin.html';
     }
   });
-});
+}
 
 /* =========================================
    ПЕРЕМЕЩЕНИЕ КНОПКИ КОРЗИНЫ
@@ -624,5 +881,8 @@ if (
    ЗАПУСК
 ========================================= */
 
-renderCart();
-initAddButtons();
+// Инициализация после полной загрузки DOM
+document.addEventListener('DOMContentLoaded', () => {
+  renderCart();
+  initAddButtons();
+});
