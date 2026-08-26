@@ -482,6 +482,38 @@ if (calculator) {
 }
 
 /* =========================================
+   СКРЫТЫЙ ВХОД В АДМИНКУ
+   Нажмите Ctrl + Shift + A (или Cmd + Shift + A на Mac)
+========================================= */
+
+document.addEventListener('keydown', (e) => {
+  // Ctrl + Shift + A
+  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    window.location.href = 'admin.html';
+  }
+  
+  // Cmd + Shift + A (для Mac)
+  if (e.metaKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+    e.preventDefault();
+    window.location.href = 'admin.html';
+  }
+});
+
+/* =========================================
+   ЗАКРЫТИЕ РЕКЛАМЫ
+========================================= */
+
+document.querySelectorAll('.ad-close').forEach(button => {
+  button.addEventListener('click', () => {
+    const ad = button.closest('.ad-banner');
+    if (ad) {
+      ad.style.display = 'none';
+    }
+  });
+});
+
+/* =========================================
    ПЕРЕМЕЩЕНИЕ КНОПКИ КОРЗИНЫ
 ========================================= */
 
